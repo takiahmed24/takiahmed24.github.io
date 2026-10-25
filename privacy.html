@@ -20,7 +20,7 @@
 <div class="doc-head"><div class="wrap">
   <p class="path"><a href="/#work">Last Charge</a> / Privacy Policy</p>
   <h1>Privacy Policy</h1>
-  <p class="meta">Last updated: October 14, 2026 · Applies to <strong>Last Charge</strong> (Google Play, app ID <code>com.takiapps.lastcharge</code>)</p>
+  <p class="meta">Last updated: October 25, 2026 · Applies to <strong>Last Charge</strong> (Google Play, app ID <code>com.takiapps.lastcharge</code>)</p>
 </div></div>
 <div class="wrap"><div class="doc">
 <nav class="toc" aria-label="On this page"><p>On this page</p>
@@ -38,10 +38,11 @@
 <article class="prose">
 <div class="summary"><p><strong>In short:</strong></p>
 <ul>
-  <li>No sign-up. We never ask for your name, email or phone number.</li>
-  <li>Your progress is saved on your phone. No analytics or tracking tools are built in.</li>
+  <li>No sign-up. We never ask for your email or phone number.</li>
+  <li>Your progress is saved on your phone. We do not build in analytics tools of our own.</li>
   <li>Signing in with Google Play Games is optional. If you do, Google keeps your scores and a backup of your progress.</li>
-  <li>The game shows no ads right now.</li>
+  <li>Our own weekly leaderboard shows your player name and run results to other players.</li>
+  <li>Ads are optional rewarded ads from Google AdMob: you only see one when you tap "Watch ad".</li>
   <li>If you buy shards, Google handles the payment. We never sell your data.</li>
 </ul></div>
 
@@ -67,18 +68,39 @@
 <p>Signing in is optional. Without it, everything stays on your phone.</p>
 <h3>Google Play Billing (only if you buy something)</h3>
 <p>Shard purchases are processed by Google Play. The game receives a purchase record (what you bought and a purchase token) so it can deliver your shards. We never see your payment details.</p>
+<h3>Last Charge leaderboard (our own server)</h3>
+<p>So that every player can appear on the weekly RANKS boards, the game sends the following to our leaderboard server
+(hosted for us by Supabase, encrypted in transit):</p>
+<ul>
+  <li>A <strong>random player key</strong> made on your phone (it is not linked to your Google Account; the server stores only a scrambled version of it).</li>
+  <li>Your <strong>player name</strong>: your Play Games display name, or a nickname you pick on RANKS (otherwise an automatic name like "Warden 1234"). Names are public on the boards.</li>
+  <li>Your <strong>run results</strong>: distance, score and run time, and for competition runs the number of taps/swipes and where you revived.</li>
+  <li>A <strong>Play Integrity check result</strong> from Google (whether the game is a genuine Play copy on a genuine device), used only to stop cheating.</li>
+  <li>A <strong>scrambled (hashed) version of your network address</strong>, used only to limit fake accounts. The address itself is not stored.</li>
+</ul>
+<p>Weekly results are kept so the boards and season ranks work. To delete your leaderboard data, see the <a href="delete-data.html">data deletion page</a>.</p>
 <h3>Crash and performance statistics</h3>
 <p>Google Play may give us statistics about crashes and app performance (Android vitals) if you allowed your device to share usage and diagnostics with Google. These reports do not identify you to us.</p>
 
 <h2 id="ads">Advertising</h2>
-<p>Last Charge currently <strong>shows no ads</strong> and does not start any advertising service. We may add optional rewarded ads in a future update, for example "watch an ad to revive." If we do, ads will come from Google AdMob, you will only see one when you choose to, players in the EEA, UK and Switzerland will be asked for consent first, and this policy will be updated before that version is released.</p>
+<p>Last Charge shows <strong>optional rewarded ads</strong> from <strong>Google AdMob</strong>: you only see an ad when you choose
+to tap "Watch ad" (to revive, to double a run's coins, or for one free chest a day). There are no banner or pop-up ads, and
+no ads in competition runs.</p>
+<ul>
+  <li>To show and measure ads, Google AdMob may collect your device's <strong>advertising ID</strong>, approximate location
+  (from your network address), ad interactions and diagnostic data. See <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how Google uses information from apps that use its services</a>.</li>
+  <li>Players in the EEA, UK and Switzerland are asked for consent first (Google's consent form). You can change your choice
+  any time in the game: <em>Settings → Privacy &amp; data → Ad privacy choices</em>.</li>
+  <li>You can reset or delete your advertising ID in your phone's settings (Google → Ads), which also limits ad personalisation.</li>
+  <li>Ad content is limited to a teen-appropriate rating.</li>
+</ul>
 
 <h2 id="sharing">How we use and share information</h2>
 <ul>
-  <li>We use the information above only to run the game: saving progress, showing leaderboards and delivering purchases.</li>
+  <li>We use the information above only to run the game: saving progress, showing leaderboards, stopping cheating, delivering purchases and showing the ads you choose to watch.</li>
   <li>We do <strong>not</strong> sell your personal information or share it with data brokers.</li>
-  <li>Information is shared only with the Google services listed above, which run these features.</li>
-  <li>Information sent between the game and Google services is encrypted in transit (HTTPS).</li>
+  <li>Information is shared only with the services listed above (Google Play services, Google AdMob, and Supabase, which hosts our leaderboard server).</li>
+  <li>Information sent between the game and these services is encrypted in transit (HTTPS).</li>
 </ul>
 
 <h2 id="children">Children</h2>
@@ -88,13 +110,16 @@
 <ul>
   <li><strong>Reset progress</strong> in the game (Settings → Privacy &amp; data) or uninstall it to remove data from your phone.</li>
   <li><strong>Play Games data</strong> (scores, cloud saves) can be deleted in the Google Play Games app or your Google Account.</li>
+  <li><strong>Leaderboard data</strong> on our server (player name, run results): email us from the data deletion page and we delete it.</li>
+  <li><strong>Ads</strong>: change your consent in <em>Settings → Privacy &amp; data → Ad privacy choices</em>, or reset your advertising ID in your phone's settings.</li>
   <li><strong>Any other request</strong>, such as access or deletion: email us. Full steps are on the <a href="delete-data.html">data deletion page</a>.</li>
 </ul>
 <p>Depending on where you live (for example under GDPR or CCPA), you may have rights to access, correct or delete your data. Contact us and we will help within 30 days.</p>
 
 <h2 id="third">Third-party policies</h2>
 <ul>
-  <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> (Google Play, Play Games Services, Play Billing)</li>
+  <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> (Google Play, Play Games Services, Play Billing, Google AdMob)</li>
+  <li><a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase Privacy Policy</a> (hosts our leaderboard server)</li>
   <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from apps that use its services</a></li>
 </ul>
 
