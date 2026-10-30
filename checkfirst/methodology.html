@@ -3,25 +3,28 @@
 <title>How CheckFirst works · CheckFirst</title><meta name="description" content="How CheckFirst works for the CheckFirst app.">
 <link rel="stylesheet" href="/checkfirst/style.css"></head><body>
 <header><strong>CheckFirst</strong><nav><a href="/checkfirst/">CheckFirst</a><a href="/checkfirst/privacy">Privacy</a><a href="/checkfirst/terms">Terms</a><a href="/checkfirst/methodology">How it works</a><a href="/checkfirst/takedown">Respond to a report</a></nav></header>
-<main><h1>How CheckFirst works</h1><p class="muted">Last updated October 22, 2026</p>
+<main><h1>How CheckFirst works</h1><p class="muted">Last updated October 28, 2026</p>
 
 <h2>What a search shows</h2>
 <p>An <strong>exact match</strong> means a report names the same normalised ID (for example the same phone number after removing spaces and country code differences). <strong>Similar</strong> names or numbers are shown separately and never under exact matches. If the search service is down, the app says "Search unavailable", never "no reports".</p>
 <h2>Status labels</h2>
 <table><tr><th>Label</th><th>Meaning</th></tr>
-<tr><td>Supports the reported allegation</td><td>At least one piece of evidence a reviewer saw shows the ID in the situation described. It is still an allegation, not a court finding.</td></tr>
+<tr><td>Unverified</td><td>Nobody has reviewed the report yet (its proof is shown as the reporter sent it), or a moderator checked the proof and it does not clearly show what was reported. It is one person's account.</td></tr>
+<tr><td>Verified</td><td>A moderator checked the proof and it supports the report: it shows the ID in the situation described. It is still a report, not a court decision.</td></tr>
+<tr><td>Payment verified</td><td>A moderator checked the proof: it shows the payment to the ID. The rest of the story is not verified.</td></tr>
 <tr><td>No evidence yet</td><td>A report exists but no evidence has been added or accepted. This label never appears as "supported".</td></tr>
 <tr><td>Disputed</td><td>The named side or another reviewer challenged the report. Both sides are shown.</td></tr>
 <tr><td>Under review</td><td>A moderator put the ID or report on hold. Counts are hidden while it is checked.</td></tr></table>
 <h2>How reports are reviewed</h2>
-<ol><li>The reporter writes what happened and adds proof, after hiding private details on their own phone.</li>
-<li>A moderator checks that the proof shows the ID in question, that private details are hidden, and that the wording states what happened without calling anyone a criminal.</li>
-<li>The moderator decides: publish, ask for more, reject, or hold. The decision and reason are saved in an audit log that cannot be edited or deleted.</li>
-<li>After publishing, anyone can flag a problem; the named side can respond; corrections are added to a visible timeline.</li></ol>
+<ol><li>The reporter writes what happened and adds proof. Covering private details on their own phone first is optional.</li>
+<li>The report is public at once, labelled Unverified: the ID, the category, the title, what happened, the name as reported (not identity proof), "Submitted by" (a name the reporter chose, or "a CheckFirst user") and the photos (anything the reporter chose to cover stays blacked out). A report without proof is public too, marked "No proof provided", so others can be careful; it can never become Verified.</li>
+<li>A moderator then checks that the proof shows the ID in question, that the photos show no sensitive details of other people that are not needed (such as home addresses, ID numbers or children), and that the wording states what happened without calling anyone a criminal.</li>
+<li>The moderator decides: verify (the label becomes Verified or Payment verified), ask for more, restrict, remove, or hold. The decision and reason are saved in an audit log that cannot be edited or deleted.</li>
+<li>At any time, anyone can flag a problem; the named side can respond; corrections are added to a visible timeline.</li></ol>
 <h2>Quick flag</h2>
 <p>Quick flag is a fast way to say an ID gave you a problem without a full report. It has no free text. A flag count is shown publicly only when several different devices have flagged the same ID, one person's repeated flags never add up, and the count disappears while a report or ID is under review. A count is not proof.</p>
 <h2>What we do not do</h2>
-<p>We do not call anyone a "scammer" or "fraudster" in the app's own words. We do not accept payment to add, remove or change a report. We do not publish original screenshots, only the privacy-hidden copy. We cannot recover money.</p>
-<h2>Moderators</h2><p>Reviews are done by the publisher's team, currently about 3 hours a week. If reports arrive faster than we can review them, we pause new submissions rather than skip reviews.</p></main>
+<p>We do not call anyone a "scammer" or "fraudster" in the app's own words. We do not accept payment to add, remove or change a report. We do not publish original screenshots, only the copy made in the app (anything covered stays blacked out; location and camera data removed). We cannot recover money.</p>
+<h2>Moderators</h2><p>Reviews are done by the publisher's team, currently about 3 hours a week. Reports waiting for review stay labelled Unverified. If reports arrive faster than we can review them, we pause new submissions.</p></main>
 <footer>CheckFirst is published by Muhammad Taki Ahmed, Bangladesh. Contact: <a href="mailto:checkfirst@takiapps.com">checkfirst@takiapps.com</a></footer>
 </body></html>
