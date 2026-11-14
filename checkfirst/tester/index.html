@@ -34,6 +34,9 @@
   .doc-head .path .lang{color:var(--ink);font-weight:600}
   :lang(bn) body{line-height:1.7}
   @media (max-width:520px){ .steps .button{display:block;text-align:center} .wrap{padding:0 18px} }
+  .pc{display:none !important}
+  .pc-note{margin:0;color:var(--muted);font-size:15.5px}
+  @media (hover:hover) and (pointer:fine){ .phone{display:none !important} a.pc{display:inline-block !important} p.pc{display:block !important} }
 
   .doc-head h1{display:flex;align-items:center;gap:14px}
   .doc-head h1 img{width:52px;height:52px;border-radius:12px;flex:none}
@@ -57,22 +60,26 @@
   <li><span class="n">1</span><div>
     <h3>Open this page in Chrome</h3>
     <p>Opened it from WhatsApp, Messenger or another app? Tap this first, so Google knows it's you. Already in Chrome? Go to step 2.</p>
-    <a class="button line" href="intent://takiapps.com/checkfirst/tester/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Fcheckfirst%2Ftester%2F;end">Open in Chrome</a>
+    <a class="button line phone" href="intent://takiapps.com/checkfirst/tester/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Fcheckfirst%2Ftester%2F;end">Open in Chrome</a>
+    <p class="pc pc-note">On a computer? Skip this step and go to step 2.</p>
   </div></li>
   <li><span class="n">2</span><div>
     <h3>Join the testers group</h3>
     <p>On the Google page tap <strong>Join group</strong>, then come back here. Already in the Taki Apps testers group? Go to step 3.</p>
-    <a class="button" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
+    <a class="button phone" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
+    <a class="button pc" href="https://groups.google.com/g/takiapps-tester">Join the group</a>
   </div></li>
   <li><span class="n">3</span><div>
     <h3>Become a tester</h3>
     <p>On Google Play tap <strong>Become a tester</strong>, then come back here.</p>
-    <a class="button" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end">Become a tester</a>
+    <a class="button phone" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end">Become a tester</a>
+    <a class="button pc" href="https://play.google.com/apps/testing/com.takiapps.checkfirst">Become a tester</a>
   </div></li>
   <li><span class="n">4</span><div>
     <h3>Install the app</h3>
     <p>Opens CheckFirst in the Play Store app. Tap <strong>Install</strong>.</p>
-    <a class="button" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end">Open Play Store</a>
+    <a class="button phone" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end">Open Play Store</a>
+    <a class="button pc" href="https://play.google.com/store/apps/details?id=com.takiapps.checkfirst">Open Play Store</a>
   </div></li>
 </ol>
 
