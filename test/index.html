@@ -3,115 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
-<title>Test our apps · Taki Apps</title>
+<title>Test our apps | Taki Apps</title>
 <meta name="description" content="Join the Taki Apps testers once, then test each app from Google Play.">
 <link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="stylesheet" href="/style.css">
 <style>
-  @font-face { font-family:"Schibsted Grotesk"; font-weight:400; font-display:swap; src:url(/fonts/schibsted-grotesk-latin.woff2) format("woff2"); }
-  @font-face { font-family:"Schibsted Grotesk"; font-weight:600; font-display:swap; src:url(/fonts/schibsted-grotesk-latin.woff2) format("woff2"); }
-  @font-face { font-family:"Schibsted Grotesk"; font-weight:800; font-display:swap; src:url(/fonts/schibsted-grotesk-latin.woff2) format("woff2"); }
-  :root { --paper:#fff; --wash:#f3f5f8; --ink:#17223b; --body:#3a4357; --muted:#5f6879; --rule:#dfe3ea;
-          --btn:#17223b; --on:#fff; --tag:#e6ebf4; --note:#fff4d6; --noteline:#e9d49a; color-scheme:light; }
-  @media (prefers-color-scheme: dark) {
-    :root { --paper:#121826; --wash:#1a2232; --ink:#eef1f7; --body:#c9cfdb; --muted:#9aa3b5; --rule:#2c3549;
-            --btn:#d5ddef; --on:#121826; --tag:#263049; --note:#2e2a1c; --noteline:#5a4d25; color-scheme:dark; }
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--paper); color:var(--body); font:400 1rem/1.5 "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:520px; margin:0 auto; padding:18px 16px 40px; }
-  .top { display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding-bottom:12px; border-bottom:1px solid var(--rule); }
-  .logo { font-weight:800; font-size:1.2rem; letter-spacing:-.02em; color:var(--ink); text-decoration:none; }
-  .top span { font-size:.875rem; color:var(--muted); }
-  h1 { color:var(--ink); font-size:1.85rem; line-height:1.15; letter-spacing:-.02em; margin:22px 0 8px; }
-  .lead { margin:0 0 22px; }
-  h2 { color:var(--ink); font-size:1rem; text-transform:uppercase; letter-spacing:.06em; margin:28px 0 12px; }
-  ol.route { list-style:none; margin:0; padding:0; }
-  .route li { position:relative; padding:0 0 22px 46px; }
-  .route li::before { content:""; position:absolute; left:15px; top:32px; bottom:0; border-left:2px solid var(--rule); }
-  .route li:last-child { padding-bottom:4px; }
-  .route li:last-child::before { display:none; }
-  .num { position:absolute; left:0; top:0; display:grid; place-items:center; width:32px; height:32px; border-radius:50%;
-         background:var(--ink); color:var(--paper); font-weight:800; }
-  h3 { color:var(--ink); font-size:1.1rem; line-height:1.3; margin:4px 0 4px; }
-  .tag { display:inline-block; font-size:.8rem; font-weight:600; background:var(--tag); color:var(--ink); padding:1px 8px; border-radius:4px; margin-left:4px; vertical-align:2px; }
-  p { margin:0 0 12px; overflow-wrap:anywhere; }
-  .btn { display:block; text-align:center; text-decoration:none; font-weight:600; padding:12px 14px; min-height:48px;
-         border-radius:6px; background:var(--btn); color:var(--on); }
-  .btn.alt { background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
-  .app { border:1px solid var(--rule); border-radius:8px; padding:16px; margin:0 0 14px; }
-  .app header { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
-  .app img { width:48px; height:48px; border-radius:11px; flex:none; }
-  .app h3 { margin:0; }
-  .app .what { margin:2px 0 0; font-size:.92rem; }
-  .pair { display:grid; gap:10px; }
-  .pair .btn { display:flex; align-items:center; justify-content:center; gap:8px; }
-  .pair b { display:inline-grid; place-items:center; width:22px; height:22px; border-radius:50%; font-size:.8rem; background:var(--on); color:var(--btn); }
-  .pair .alt b { background:var(--ink); color:var(--paper); }
-  .pkg { margin:10px 0 0; font-size:.8rem; color:var(--muted); }
-  .pkg code { font-family:"Cascadia Mono", Consolas, monospace; }
-  .note { background:var(--note); border:1px solid var(--noteline); border-radius:6px; padding:12px 14px; margin:18px 0 14px; }
-  .small { font-size:.875rem; color:var(--muted); }
-  a { color:inherit; }
-  @media (min-width:420px) { .pair { grid-template-columns:1fr 1fr; } }
+  .tp{max-width:640px;padding:30px 0 80px}
+  .tp h2{font-size:23px;margin:40px 0 4px}
+  .tp h2:first-child{margin-top:0}
+  .tp > p{margin:0 0 14px}
+  .steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+  .steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:0 12px;padding:20px 0;border-bottom:1px solid var(--rule)}
+  .steps .n{font-size:26px;font-weight:800;line-height:1.15;color:var(--ink)}
+  .steps h3{font-size:19px;margin:0 0 4px}
+  .steps p{margin:0 0 14px}
+  .button.line{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .button.line:hover{background:var(--wash);color:var(--ink)}
+  .app{border:1px solid var(--rule);border-radius:10px;padding:22px 20px 18px;margin:16px 0}
+  .app h3{font-size:24px;margin:0 0 4px;display:flex;align-items:center;gap:14px}
+  .app h3 img{width:48px;height:48px;border-radius:11px}
+  .app .what{color:var(--muted);font-size:15.5px;margin:0 0 18px}
+  .acts{display:flex;flex-wrap:wrap;gap:10px}
+  .acts .button{flex:1 1 220px;text-align:center}
+  .app .small-links{margin:14px 0 0;font-size:14.5px;display:flex;flex-wrap:wrap;gap:4px 18px}
+  .summary{margin:28px 0 18px}
+  @media (max-width:520px){ .steps .button{display:block;text-align:center} .wrap{padding:0 18px} }
 </style>
 </head>
 <body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/">Taki Apps</a>
+  <nav><a href="/#work">Work</a><a href="/#contact">Contact</a><a class="opt" href="/support.html">Support</a></nav>
+</div></header>
 <main>
-  <div class="top"><a class="logo" href="/">Taki Apps</a><span>Closed testing</span></div>
+<div class="doc-head"><div class="wrap">
+  <p class="path"><a href="/">Taki Apps</a> / Testing</p>
   <h1>Test our apps</h1>
-  <p class="lead">Help us get our Android apps onto Google Play. Use the <strong>same Google account (Gmail)</strong> for every step.</p>
+  <p class="meta">Help us get our Android apps onto Google Play. Use the <strong>same Google account (Gmail)</strong> for every step.</p>
+</div></div>
+<div class="wrap"><div class="tp">
 
-  <h2>Do this once</h2>
-  <ol class="route">
-    <li>
-      <span class="num">1</span>
-      <h3>Open this page in Chrome</h3>
-      <p>Opened it from WhatsApp, Messenger or another app? Tap this first, so Google knows it's you. Already in Chrome? Go to step 2.</p>
-      <a class="btn alt" href="intent://takiapps.com/test/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Ftest%2F;end">Open in Chrome</a>
-    </li>
-    <li>
-      <span class="num">2</span>
-      <h3>Join the Taki Apps testers group <span class="tag">one time</span></h3>
-      <p>On the Google page tap <strong>Join group</strong>, then come back here. This one group covers every app below.</p>
-      <a class="btn" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
-    </li>
-  </ol>
+<h2>First, one time only</h2>
+<ol class="steps">
+  <li><span class="n">1</span><div>
+    <h3>Open this page in Chrome</h3>
+    <p>Opened it from WhatsApp, Messenger or another app? Tap this first, so Google knows it's you. Already in Chrome? Go to step 2.</p>
+    <a class="button line" href="intent://takiapps.com/test/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Ftest%2F;end">Open in Chrome</a>
+  </div></li>
+  <li><span class="n">2</span><div>
+    <h3>Join the Taki Apps testers group</h3>
+    <p>On the Google page tap <strong>Join group</strong>, then come back here. You join once; it covers every app below.</p>
+    <a class="button" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
+  </div></li>
+</ol>
 
-  <h2>Then for each app (2)</h2>
-  <p>Tap <strong>3 Become a tester</strong>, tap the button on the Google Play page, come back, then tap <strong>4 Install from Play</strong>.</p>
+<h2>Then, for each app</h2>
+<p>2 apps are in testing now. For each one: tap <strong>Become a tester</strong>, accept on the Google Play page, come back, then tap <strong>Install from Google Play</strong>.</p>
 
-  <article class="app" id="guessduel">
-    <header>
-      <img src="/img/apps/guessduel-96.png" alt="" width="48" height="48">
-      <div><h3>GuessDuel</h3><p class="what">Number duel game: guess your friend&#x27;s secret number first.</p></div>
-    </header>
-    <div class="pair">
-      <a class="btn" href="intent://play.google.com/apps/testing/com.takiapps.guessduel#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.guessduel;end"><b>3</b>Become a tester</a>
-      <a class="btn alt" href="intent://details?id=com.takiapps.guessduel#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.guessduel;end"><b>4</b>Install from Play</a>
-    </div>
-    <p class="pkg">Plain links: <a href="https://play.google.com/apps/testing/com.takiapps.guessduel">become a tester</a> · <a href="https://play.google.com/store/apps/details?id=com.takiapps.guessduel">Play Store page</a> · <code>com.takiapps.guessduel</code></p>
-  </article>
-  <article class="app" id="checkfirst">
-    <header>
-      <img src="/img/apps/checkfirst-96.png" alt="" width="48" height="48">
-      <div><h3>CheckFirst</h3><p class="what">Check a number, wallet or link against scam reports before you pay.</p></div>
-    </header>
-    <div class="pair">
-      <a class="btn" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end"><b>3</b>Become a tester</a>
-      <a class="btn alt" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end"><b>4</b>Install from Play</a>
-    </div>
-    <p class="pkg">Plain links: <a href="https://play.google.com/apps/testing/com.takiapps.checkfirst">become a tester</a> · <a href="https://play.google.com/store/apps/details?id=com.takiapps.checkfirst">Play Store page</a> · <code>com.takiapps.checkfirst</code></p>
-  </article>
+<article class="app" id="guessduel">
+  <h3><img src="/img/apps/guessduel-96.png" alt="" width="48" height="48">GuessDuel</h3>
+  <p class="what">Number duel game. Guess your friend&#x27;s secret number before they guess yours.</p>
+  <div class="acts">
+    <a class="button" href="intent://play.google.com/apps/testing/com.takiapps.guessduel#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.guessduel;end">3. Become a tester</a>
+    <a class="button line" href="intent://details?id=com.takiapps.guessduel#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.guessduel;end">4. Install from Google Play</a>
+  </div>
+  <p class="small-links"><a href="https://play.google.com/apps/testing/com.takiapps.guessduel">Tester page (web)</a><a href="https://play.google.com/store/apps/details?id=com.takiapps.guessduel">Play Store page (web)</a></p>
+</article>
+<article class="app" id="checkfirst">
+  <h3><img src="/img/apps/checkfirst-96.png" alt="" width="48" height="48">CheckFirst</h3>
+  <p class="what">Check a phone number, wallet or link against scam reports before you pay.</p>
+  <div class="acts">
+    <a class="button" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end">3. Become a tester</a>
+    <a class="button line" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end">4. Install from Google Play</a>
+  </div>
+  <p class="small-links"><a href="https://play.google.com/apps/testing/com.takiapps.checkfirst">Tester page (web)</a><a href="https://play.google.com/store/apps/details?id=com.takiapps.checkfirst">Play Store page (web)</a></p>
+</article>
 
-  <p class="note"><strong>Play says "not available" or "can't download"?</strong> Check the picture at the top right of the Play Store is the same Gmail you used in steps 2 and 3. Then wait a few minutes after step 3 and try again.</p>
+<div class="summary"><p><strong>Play says “not available” or “can't download”?</strong> Check that the picture at the top right of the Play Store is the same Gmail you used to join the group and become a tester. Then wait a few minutes and try again.</p></div>
+<p>Please stay a tester for at least <strong>14 days</strong>: keep the app installed and don't leave the group. Google needs that before the app can go public.</p>
+<p>Not on Android, or a button does nothing? Use the web links under each app and the <a href="https://groups.google.com/g/takiapps-tester">testers group page</a>. Questions: <a href="mailto:support@takiapps.com">support@takiapps.com</a>.</p>
 
-  <p>Please stay in the test for at least <strong>14 days</strong>: keep the app installed and don't leave the group. Google needs that before the app can go public.</p>
-
-  <p class="small">Not on Android, or a button does nothing? Use the plain links under each app, and <a href="https://groups.google.com/g/takiapps-tester">the testers group</a>.
-    Questions: <a href="mailto:support@takiapps.com">support@takiapps.com</a>.</p>
+</div></div>
 </main>
+<footer><div class="wrap">
+  <span>&copy; 2026 Taki Apps</span>
+  <nav><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/support.html">Support</a></nav>
+</div></footer>
 </body>
 </html>

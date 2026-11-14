@@ -3,74 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
-<title>Test CheckFirst</title>
+<title>Test CheckFirst · CheckFirst</title>
 <meta name="description" content="Four short steps to install the CheckFirst test app from Google Play.">
 <link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="stylesheet" href="/checkfirst/style.css">
 <style>
-  :root { --bg:#F5F2EA; --panel:#FFFEFA; --ink:#202A2D; --muted:#596365; --line:#D8D4CA; --brand:#215C50; --on:#FFFFFF; --soft:#E8EEF3; --note:#F4E8CE; --noteink:#202A2D; color-scheme:light; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#141819; --panel:#1C2123; --ink:#ECE8E0; --muted:#A7AFB0; --line:#353C3E; --brand:#6FB8A6; --on:#0D1A17; --soft:#22302f; --note:#33291A; --noteink:#ECE8E0; color-scheme:dark; } }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:400 1rem/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:480px; margin:0 auto; padding:20px 16px 40px; }
-  .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.2rem; }
-  .brand img { width:36px; height:36px; border-radius:9px; }
-  h1 { font-size:1.8rem; line-height:1.15; letter-spacing:-.5px; margin:20px 0 8px; }
-  .lead { color:var(--muted); margin:0 0 20px; }
-  ol { list-style:none; margin:0; padding:0; }
-  li { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:16px; margin:0 0 12px; }
-  .num { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--brand); color:var(--on); font-weight:700; margin-right:10px; flex:none; }
-  h2 { display:flex; align-items:center; font-size:1.1rem; margin:0 0 6px; }
-  p { margin:0 0 12px; overflow-wrap:anywhere; }
-  .btn { display:block; text-align:center; text-decoration:none; font-weight:600; padding:12px 14px; min-height:48px; border-radius:6px; background:var(--brand); color:var(--on); }
-  .btn.alt { background:transparent; color:var(--ink); border:1.5px solid var(--brand); }
-  .tag { font-size:.8rem; font-weight:600; background:var(--soft); padding:1px 8px; border-radius:4px; margin-left:6px; }
-  .note { background:var(--note); color:var(--noteink); border-radius:6px; padding:12px 14px; margin:0 0 16px; }
-  .small { font-size:.875rem; color:var(--muted); }
-  a { color:inherit; }
+  :root{--act:#215C50;--on:#fff}
+  @media (prefers-color-scheme:dark){:root{--act:#6FB8A6;--on:#0D1A17}}
+  ol.steps{padding-left:1.4rem;margin:1.5rem 0}
+  ol.steps li{padding:0 0 1.2rem;margin:0 0 1.2rem;border-bottom:1px solid var(--line)}
+  ol.steps li::marker{font-weight:700}
+  ol.steps h2{margin:0 0 .25rem;font-size:1.15rem}
+  ol.steps p{margin:0 0 .8rem}
+  .btn{display:block;text-align:center;text-decoration:none;font-weight:600;padding:.7rem 1rem;min-height:48px;border-radius:6px;background:var(--act);color:var(--on)}
+  .btn.line{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--act)}
+  .help{border-top:1px solid var(--line);padding-top:1rem}
+  main{overflow-wrap:anywhere}
+  @media (max-width:420px){header,main,footer{padding:1rem}}
 </style>
 </head>
 <body>
-<main>
-  <div class="brand"><img src="/img/apps/checkfirst-96.png" alt="" width="36" height="36">CheckFirst</div>
-  <h1>Test CheckFirst on your phone</h1>
-  <p class="lead">Four short steps. Use the same Google account (Gmail) for all of them.</p>
+<header><strong>CheckFirst</strong><nav><a href="/checkfirst/">CheckFirst</a><a href="/checkfirst/privacy">Privacy</a><a href="/checkfirst/terms">Terms</a><a href="/test/">All test apps</a></nav></header>
+<main><h1>Test CheckFirst on your phone</h1>
+<p class="muted">Four short steps. Use the same Google account (Gmail) for all of them.</p>
 
-  <ol>
-    <li>
-      <h2><span class="num">1</span>Open this page in Chrome</h2>
-      <p>Opened it from WhatsApp, Messenger or another app? Tap this first, so Google knows it's you. Already in Chrome? Go to step 2.</p>
-      <a class="btn alt" href="intent://takiapps.com/checkfirst/tester/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Fcheckfirst%2Ftester%2F;end">Open in Chrome</a>
-    </li>
-    <li>
-      <h2><span class="num">2</span>Join the testers group</h2>
-      <p>On the Google page tap <strong>Join group</strong>, then come back here. Already in the Taki Apps testers group? Go to step 3.</p>
-      <a class="btn" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
-    </li>
-    <li>
-      <h2><span class="num">3</span>Become a tester</h2>
-      <p>On Google Play tap <strong>Become a tester</strong>, then come back here.</p>
-      <a class="btn" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end">Become a tester</a>
-    </li>
-    <li>
-      <h2><span class="num">4</span>Install the app</h2>
-      <p>Opens CheckFirst in the Play Store app. Tap <strong>Install</strong>.</p>
-      <a class="btn" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end">Open Play Store</a>
-    </li>
-  </ol>
+<ol class="steps">
+  <li>
+    <h2>Open this page in Chrome</h2>
+    <p>Opened it from WhatsApp, Messenger or another app? Tap this first, so Google knows it's you. Already in Chrome? Go to step 2.</p>
+    <a class="btn line" href="intent://takiapps.com/checkfirst/tester/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Ftakiapps.com%2Fcheckfirst%2Ftester%2F;end">Open in Chrome</a>
+  </li>
+  <li>
+    <h2>Join the testers group</h2>
+    <p>On the Google page tap <strong>Join group</strong>, then come back here. Already in the Taki Apps testers group? Go to step 3.</p>
+    <a class="btn" href="intent://groups.google.com/g/takiapps-tester#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fgroups.google.com%2Fg%2Ftakiapps-tester;end">Join the group</a>
+  </li>
+  <li>
+    <h2>Become a tester</h2>
+    <p>On Google Play tap <strong>Become a tester</strong>, then come back here.</p>
+    <a class="btn" href="intent://play.google.com/apps/testing/com.takiapps.checkfirst#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fapps%2Ftesting%2Fcom.takiapps.checkfirst;end">Become a tester</a>
+  </li>
+  <li>
+    <h2>Install the app</h2>
+    <p>Opens CheckFirst in the Play Store app. Tap <strong>Install</strong>.</p>
+    <a class="btn" href="intent://details?id=com.takiapps.checkfirst#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.takiapps.checkfirst;end">Open Play Store</a>
+  </li>
+</ol>
 
-  <p class="note"><strong>Play says "not available" or "can't download"?</strong> Check the picture at the top right of the Play Store is the same Gmail you used in steps 2 and 3. Then wait a few minutes after step 3 and try again.</p>
-
-  <p>Please stay in the test for at least <strong>14 days</strong>: keep the app installed and don't leave the group.</p>
-
-  <p class="small">Not on Android, or a button does nothing? Use the plain links:
-    <a href="https://groups.google.com/g/takiapps-tester">testers group</a> ·
-    <a href="https://play.google.com/apps/testing/com.takiapps.checkfirst">become a tester</a> ·
-    <a href="https://play.google.com/store/apps/details?id=com.takiapps.checkfirst">Play Store page</a>.
-    Testing more Taki Apps apps? <a href="/test/">All apps in testing</a>.
-    About the app: <a href="/checkfirst/">CheckFirst pages</a> · <a href="mailto:checkfirst@takiapps.com">checkfirst@takiapps.com</a></p>
-</main>
+<div class="help">
+<p><strong>Play says “not available” or “can't download”?</strong> Check that the picture at the top right of the Play Store is the same Gmail you used to join the group and become a tester. Then wait a few minutes and try again.</p>
+<p>Please stay a tester for at least <strong>14 days</strong>: keep the app installed and don't leave the group. Google needs that before the app can go public.</p>
+<p class="muted">Not on Android, or a button does nothing? Web links: <a href="https://groups.google.com/g/takiapps-tester">testers group</a> · <a href="https://play.google.com/apps/testing/com.takiapps.checkfirst">become a tester</a> · <a href="https://play.google.com/store/apps/details?id=com.takiapps.checkfirst">Play Store page</a>.</p>
+</div></main>
+<footer>CheckFirst is published by Muhammad Taki Ahmed, Bangladesh. Contact: <a href="mailto:checkfirst@takiapps.com">checkfirst@takiapps.com</a></footer>
 </body>
 </html>
