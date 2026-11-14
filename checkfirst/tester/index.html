@@ -14,6 +14,7 @@
   :root{--act:#215C50;--on:#fff}
   @media (prefers-color-scheme:dark){:root{--act:#6FB8A6;--on:#0D1A17}}
   ol.steps{padding-left:1.4rem;margin:1.5rem 0}
+  ol.steps:lang(bn){list-style-type:bengali}
   ol.steps li{padding:0 0 1.2rem;margin:0 0 1.2rem;border-bottom:1px solid var(--line)}
   ol.steps li::marker{font-weight:700}
   ol.steps h2{margin:0 0 .25rem;font-size:1.15rem}
@@ -22,11 +23,12 @@
   .btn.line{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--act)}
   .help{border-top:1px solid var(--line);padding-top:1rem}
   main{overflow-wrap:anywhere}
+  :lang(bn) body{line-height:1.7}
   @media (max-width:420px){header,main,footer{padding:1rem}}
 </style>
 </head>
 <body>
-<header><strong>CheckFirst</strong><nav><a href="/checkfirst/">CheckFirst</a><a href="/checkfirst/privacy">Privacy</a><a href="/checkfirst/terms">Terms</a><a href="/test/">All test apps</a></nav></header>
+<header><strong>CheckFirst</strong><nav><a href="/checkfirst/">CheckFirst</a><a href="/checkfirst/privacy">Privacy</a><a href="/checkfirst/terms">Terms</a><a href="/test/">All test apps</a><a href="/checkfirst/tester/bn/" lang="bn" hreflang="bn"><strong>বাংলা</strong></a></nav></header>
 <main><h1>Test CheckFirst on your phone</h1>
 <p class="muted">Four short steps. Use the same Google account (Gmail) for all of them.</p>
 
