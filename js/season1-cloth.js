@@ -27,8 +27,7 @@ function lanternColour(t, seed, out) {
 }
 
 // Draws the banner art into a canvas and stamps the plate text, so the words move with the cloth.
-// season1-bn.html (lang bn): the plates are written in Bangla
-const BN = document.documentElement.lang === 'bn';
+// banner plates stay in English on the Bangla page too (owner 2026-11-22)
 const PLATE_FONT = '"Schibsted Grotesk", "Noto Sans Bengali", "Nirmala UI", "Vrinda", Arial, sans-serif';
 function stampPlate(img, lines, rect, style) {
   const c = document.createElement('canvas');
@@ -373,7 +372,7 @@ function clothHit(cloth, group, wp, wd, drag) {
 async function buildHero(el) {
   const st = new Stage(el), sc = st.scene, R = st.renderer;
   const [heroImg, logoImg, heroMask, logoMask] = await Promise.all(['img/s1/hero.webp', 'img/s1/logo.webp', 'img/s1/hero-glow-mask.webp', 'img/s1/logo-glow-mask.webp'].map(loadImage));
-  const heroCanvas = stampPlate(heroImg, [BN ? 'সিজন I  নগদ পুরস্কার' : 'SEASON I  CASH PRIZES'], [0.30, 0.552, 0.70, 0.668], { ink: '#3b200b', shade: 'rgba(30,14,4,.55)', edge: 'rgba(255,236,190,.55)' });
+  const heroCanvas = stampPlate(heroImg, ['SEASON I  CASH PRIZES'], [0.30, 0.552, 0.70, 0.668], { ink: '#3b200b', shade: 'rgba(30,14,4,.55)', edge: 'rgba(255,236,190,.55)' });
 
   const beamG = beam(sc, 3); const chains = new Chains(sc, 160);
   // logo
@@ -458,8 +457,8 @@ async function buildPrizes(el) {
   const st = new Stage(el), sc = st.scene, R = st.renderer;
   const [blueImg, redImg] = await Promise.all(['img/s1/banner-35k.webp', 'img/s1/banner-50k.webp'].map(loadImage));
   const plateInk = { ink: '#f2e6c9', shade: 'rgba(10,6,3,.75)', edge: 'rgba(255,240,210,.25)' };
-  const blueC = stampPlate(blueImg, ['35,000 m', BN ? '৳2,000' : 'Tk 2,000'], [0.215, 0.515, 0.785, 0.618], plateInk);
-  const redC = stampPlate(redImg, ['50,000 m', BN ? '৳5,000' : 'Tk 5,000'], [0.265, 0.527, 0.775, 0.628], plateInk);
+  const blueC = stampPlate(blueImg, ['35,000 m', 'Tk 2,000'], [0.215, 0.515, 0.785, 0.618], plateInk);
+  const redC = stampPlate(redImg, ['50,000 m', 'Tk 5,000'], [0.265, 0.527, 0.775, 0.628], plateInk);
   const beamG = beam(sc, 3); const chains = new Chains(sc, 60);
   const defs = [
     { tex: blueC, W: 0.95, aspect: 1096 / 568, x: -0.54, rod: 0.085, plate: [0.13, 0.49, 0.86, 0.64], hang: [0.09, 0.91], seed: 0.3 },
