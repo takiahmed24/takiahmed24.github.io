@@ -9,6 +9,8 @@
 <meta property="og:description" content="First to 35,000 m wins Tk 2,000. First to 50,000 m wins Tk 5,000. Top two of the season win Tk 500 each.">
 <meta property="og:image" content="https://takiapps.com/img/season1-banner.webp">
 <meta property="og:url" content="https://takiapps.com/season1.html">
+<link rel="alternate" hreflang="en" href="https://takiapps.com/season1.html">
+<link rel="alternate" hreflang="bn" href="https://takiapps.com/season1-bn.html">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="stylesheet" href="style.css">
 <link rel="preload" href="img/s1/hero.webp" as="image">
@@ -55,11 +57,13 @@
   .rules { margin: 0 0 32px; padding-left: 20px; color: var(--body); line-height: 1.55; }
   .rules li { margin: 0 0 6px; }
   .play { background: var(--wash); padding: 22px; margin: 0 0 18px; }
+  .play.first { margin: 0 0 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .play.first p { margin: 0; }
+  .lang { font-size: 15px; margin: 0 0 6px; }
   .play p { margin: 0 0 14px; font-size: 18px; color: var(--ink); }
   .play a.btn { display: inline-block; background: var(--ink); color: #fff; text-decoration: none;
                 padding: 14px 22px; font-weight: 500; font-size: 18px; }
   .note { font-size: 14px; color: var(--muted); }
-  .built { font-size: 13.5px; color: var(--muted); max-width: 70ch; margin: 18px 0 0; }
 
   @media (max-width: 820px) {
     .split { grid-template-columns: 1fr; gap: 22px; }
@@ -108,8 +112,14 @@
 </section>
 
 <main class="s1"><div class="wrap">
-  <h1>🎙️ Announcement: Season I cash prizes</h1>
+  <p class="lang"><a href="season1-bn.html" lang="bn" hreflang="bn">বাংলায় পড়ুন</a></p>
+  <h1>Season I cash prizes</h1>
   <p class="lead">Last Charge Season I is coming. Run far, run first, and win real money.</p>
+
+  <div class="play first">
+    <p>Free on Google Play.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.takiapps.lastcharge">Get it on Google Play</a>
+  </div>
 
   <div class="split" id="prizes">
     <div>
@@ -170,7 +180,6 @@
     <a class="btn" href="https://play.google.com/store/apps/details?id=com.takiapps.lastcharge">Get it on Google Play</a>
   </div>
   <p class="note">News and winners: <a href="https://www.facebook.com/profile.php?id=61595764445780">our Facebook page</a>. Questions: <a href="mailto:support@takiapps.com">support@takiapps.com</a></p>
-  <p class="built" id="sim-note">The banners on this page are a live cloth simulation (Verlet integration, WebGL) running in your browser.</p>
 </div></main>
 
 <footer><div class="wrap">
@@ -192,7 +201,7 @@
     if (d % 10000 === 0) { var t = document.createElementNS(ns, 'text'); t.setAttribute('x', x); t.setAttribute("y", 86); t.textContent = d ? (d / 1000) + 'k' : '0'; ticks.appendChild(t); }
   }
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(m) { fill.setAttribute('width', Math.max(0, m / MAX * LEN)); read.textContent = Math.round(m).toLocaleString('en') + ' m' + (m >= 50000 ? '  =  Tk 5,000' : m >= 35000 ? '  =  Tk 2,000' : ''); }
+  function show(m) { fill.setAttribute('width', Math.max(0, m / MAX * LEN)); read.textContent = Math.round(m).toLocaleString('en') + ' m' + (m >= 50000 ? ': Tk 5,000 won' : m >= 35000 ? ': Tk 2,000 won, Tk 5,000 next' : ''); }
   if (still) { show(35000); return; }
   // timeline (s): run 0->35k in 5 s, hold 1.6 s, run to 50k in 2.6 s, hold 2.4 s, drain 0.8 s
   var plan = [[5, 0, 35000], [1.6, 35000, 35000], [2.6, 35000, 50000], [2.4, 50000, 50000], [0.8, 50000, 0]];

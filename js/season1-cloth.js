@@ -27,6 +27,9 @@ function lanternColour(t, seed, out) {
 }
 
 // Draws the banner art into a canvas and stamps the plate text, so the words move with the cloth.
+// season1-bn.html (lang bn): the plates are written in Bangla
+const BN = document.documentElement.lang === 'bn';
+const PLATE_FONT = '"Schibsted Grotesk", "Noto Sans Bengali", "Nirmala UI", "Vrinda", Arial, sans-serif';
 function stampPlate(img, lines, rect, style) {
   const c = document.createElement('canvas');
   c.width = img.naturalWidth; c.height = img.naturalHeight;
@@ -38,8 +41,8 @@ function stampPlate(img, lines, rect, style) {
   g.textAlign = 'center'; g.textBaseline = 'middle';
   lines.forEach((txt, k) => {
     let size = lh * (k === 0 ? 0.78 : 0.72);
-    g.font = `700 ${size}px "Schibsted Grotesk", Arial, sans-serif`;
-    while (g.measureText(txt).width > w && size > 6) { size -= 1; g.font = `700 ${size}px "Schibsted Grotesk", Arial, sans-serif`; }
+    g.font = `700 ${size}px ${PLATE_FONT}`;
+    while (g.measureText(txt).width > w && size > 6) { size -= 1; g.font = `700 ${size}px ${PLATE_FONT}`; }
     const cx = x0 + w / 2, cy = y0 + lh * (k + 0.5);
     const off = Math.max(1, size * 0.045);
     g.fillStyle = style.shade; g.fillText(txt, cx - off, cy - off);   // cut edge
@@ -204,19 +207,23 @@ class Swing {
 }
 
 // ---------- chains: instanced iron links between two moving points ----------
+// Each chain keeps the link count it got on its first frame, so links never pop in / out while the banner swings
+// (the count used to be re-counted from the length every frame). Dark forged iron with a small glint, round links.
 class Chains {
   constructor(scene, maxLinks) {
-    const geo = new THREE.TorusGeometry(0.026, 0.0075, 6, 12); geo.scale(1, 1.55, 1);
-    const mat = new THREE.MeshLambertMaterial({ color: 0x5b5753 });
+    const geo = new THREE.TorusGeometry(0.027, 0.0085, 8, 16); geo.scale(1, 1.5, 1);
+    const mat = new THREE.MeshPhongMaterial({ color: 0x46413b, specular: 0x9a8a72, shininess: 38 });
     this.mesh = new THREE.InstancedMesh(geo, mat, maxLinks); this.mesh.frustumCulled = false;
-    scene.add(this.mesh); this.max = maxLinks; this.count = 0;
+    scene.add(this.mesh); this.max = maxLinks; this.count = 0; this.idx = 0; this.links = [];
     this._m = new THREE.Matrix4(); this._q = new THREE.Quaternion(); this._q2 = new THREE.Quaternion();
     this._d = new THREE.Vector3(); this._p = new THREE.Vector3(); this._s = new THREE.Vector3(1, 1, 1); this._y = new THREE.Vector3(0, 1, 0);
   }
-  begin() { this.count = 0; }
+  begin() { this.count = 0; this.idx = 0; }
   add(a, b) {
     const d = this._d.subVectors(b, a), len = d.length(); d.normalize();
-    const pitch = 0.064, n = Math.max(2, Math.round(len / pitch));
+    const id = this.idx++;
+    if (this.links[id] === undefined) this.links[id] = Math.max(2, Math.round(len / 0.062));
+    const n = this.links[id];
     this._q.setFromUnitVectors(this._y, d);
     for (let k = 0; k < n && this.count < this.max; k++) {
       this._p.copy(a).addScaledVector(d, (k + 0.5) * len / n);
@@ -225,6 +232,7 @@ class Chains {
       this.mesh.setMatrixAt(this.count++, this._m);
     }
   }
+  reset() { this.links = []; }   // after a resize (lanterns shown / hidden) the chains are counted again
   end() { this.mesh.count = this.count; this.mesh.instanceMatrix.needsUpdate = true; }
 }
 
@@ -365,7 +373,7 @@ function clothHit(cloth, group, wp, wd, drag) {
 async function buildHero(el) {
   const st = new Stage(el), sc = st.scene, R = st.renderer;
   const [heroImg, logoImg, heroMask, logoMask] = await Promise.all(['img/s1/hero.webp', 'img/s1/logo.webp', 'img/s1/hero-glow-mask.webp', 'img/s1/logo-glow-mask.webp'].map(loadImage));
-  const heroCanvas = stampPlate(heroImg, ['SEASON I  CASH PRIZES'], [0.30, 0.552, 0.70, 0.668], { ink: '#3b200b', shade: 'rgba(30,14,4,.55)', edge: 'rgba(255,236,190,.55)' });
+  const heroCanvas = stampPlate(heroImg, [BN ? 'সিজন I  নগদ পুরস্কার' : 'SEASON I  CASH PRIZES'], [0.30, 0.552, 0.70, 0.668], { ink: '#3b200b', shade: 'rgba(30,14,4,.55)', edge: 'rgba(255,236,190,.55)' });
 
   const beamG = beam(sc, 3); const chains = new Chains(sc, 160);
   // logo
@@ -401,6 +409,7 @@ async function buildHero(el) {
     beamG.userData.setLength(halfW * 2 + 0.4);
     const show = halfW > 1.62;
     lanterns.forEach((l, k) => { l.g.visible = show; l.x = (k ? 1 : -1) * Math.min(halfW - 0.2, 2.3); });
+    chains.reset();
   };
   st.objects.push({
     update(t) {
@@ -410,7 +419,8 @@ async function buildHero(el) {
       heroG.position.set(Math.sin(heroSwing.th) * heroSwing.L * 0.35, HTOP, 0);
       heroG.rotation.set(0, heroSwing.tw * 0.25, heroSwing.th * 0.05);
       chains.begin();
-      logoAnchors.forEach((ax) => { tmpA.set(ax, -0.03, 0); logo.localToWorld(tmpB.set(ax, LH / 2 - 0.085, 0)); chains.add(tmpA, tmpB); });
+      // chains hook into the metal letters: the logo picture is see-through above them (first solid pixel ~20 % / ~24 % down at the two hooks)
+      logoAnchors.forEach((ax) => { tmpA.set(ax, -0.03, 0); logo.localToWorld(tmpB.set(ax, LH / 2 - LH * (ax < 0 ? 0.225 : 0.255), 0)); chains.add(tmpA, tmpB); });
       heroAnchors.forEach((ax) => { tmpA.set(ax, -0.03, 0); heroG.localToWorld(tmpB.set(ax, -0.055, 0)); chains.add(tmpA, tmpB); });
       lanterns.forEach((l, k) => {
         if (!l.g.visible) return;
@@ -448,8 +458,8 @@ async function buildPrizes(el) {
   const st = new Stage(el), sc = st.scene, R = st.renderer;
   const [blueImg, redImg] = await Promise.all(['img/s1/banner-35k.webp', 'img/s1/banner-50k.webp'].map(loadImage));
   const plateInk = { ink: '#f2e6c9', shade: 'rgba(10,6,3,.75)', edge: 'rgba(255,240,210,.25)' };
-  const blueC = stampPlate(blueImg, ['35,000 m', 'Tk 2,000'], [0.215, 0.515, 0.785, 0.618], plateInk);
-  const redC = stampPlate(redImg, ['50,000 m', 'Tk 5,000'], [0.265, 0.527, 0.775, 0.628], plateInk);
+  const blueC = stampPlate(blueImg, ['35,000 m', BN ? '৳2,000' : 'Tk 2,000'], [0.215, 0.515, 0.785, 0.618], plateInk);
+  const redC = stampPlate(redImg, ['50,000 m', BN ? '৳5,000' : 'Tk 5,000'], [0.265, 0.527, 0.775, 0.628], plateInk);
   const beamG = beam(sc, 3); const chains = new Chains(sc, 60);
   const defs = [
     { tex: blueC, W: 0.95, aspect: 1096 / 568, x: -0.54, rod: 0.085, plate: [0.13, 0.49, 0.86, 0.64], hang: [0.09, 0.91], seed: 0.3 },
@@ -469,7 +479,7 @@ async function buildPrizes(el) {
   const light = new THREE.PointLight(0xffa050, 1.2, 0, 2); light.position.set(0, -1.6, 0.6); sc.add(light);
   const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), col = new THREE.Color();
   let chest = null, glassMat = null;
-  st.onResize = (halfW) => beamG.userData.setLength(halfW * 2 + 0.4);
+  st.onResize = (halfW) => { beamG.userData.setLength(halfW * 2 + 0.4); chains.reset(); };
   st.objects.push({
     update(t) {
       chains.begin();
